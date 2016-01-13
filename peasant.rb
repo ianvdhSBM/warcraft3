@@ -1,4 +1,4 @@
-require_relative 'Unit'
+require_relative 'unit'
 
 class Peasant < Unit
 

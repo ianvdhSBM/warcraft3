@@ -4,7 +4,8 @@ require_relative 'unit'
 
 class Footman < Unit
 
-  attr_reader :health_points, :attack_power
+  # inherited from Unit class
+  # attr_reader :health_points, :attack_power
 
   def initialize
     # Need to default the 2 instance variables here
@@ -14,11 +15,20 @@ class Footman < Unit
   end
 
   def attack!(enemy)
-    enemy.damage(attack_power)
+    if can_attack?(enemy)
+      if enemy.class.to_s == "Barracks"
+        half_power = (attack_power.to_i / 2.0).ceil
+        enemy.damage(half_power)
+      else
+        enemy.damage(attack_power)
+      end
+    end
   end
 
-  def damage(dmg)
-    @health_points -= dmg
-  end
+
+  # inherited from Unit class
+  # def damage(dmg)
+  #   @health_points -= dmg
+  # end
 
 end
